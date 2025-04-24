@@ -59,6 +59,54 @@ def generate_summary_prompt(df):
 
     return prompt
 
+# 🔸 Generate preprocessing prompt
+def generate_preprocessing_prompt(df, dataset_path, cleaned_path):
+    summary = {
+        "missing_values": df.isnull().sum().to_dict(),
+        "dtypes": df.dtypes.astype(str).to_dict(),
+        "categorical_columns": df.select_dtypes(include=['object']).columns.tolist(),
+        "numeric_columns": df.select_dtypes(include=['int64', 'float64']).columns.tolist(),
+    }
+
+    prompt = (
+        "You are a skilled Python data preprocessing expert.\n"
+        "Your task is to generate robust and production-safe Python code that performs preprocessing on any given tabular dataset.\n\n"
+        f"Dataset Path: {dataset_path}\nOutput Path: {cleaned_path}\n\n"
+        "Dataset Overview:\n"
+        f"Missing Values: {summary['missing_values']}\n"
+        f"Data Types: {summary['dtypes']}\n"
+        f"Categorical Columns: {summary['categorical_columns']}\n"
+        f"Numeric Columns: {summary['numeric_columns']}\n\n"
+
+        "Instructions:\n"
+        "- Load the dataset from the given path into a DataFrame.\n"
+        "- Dynamically identify numeric and categorical columns using select_dtypes.\n"
+        "- Drop columns with more than 80% missing values or columns with >=90% identical values (i.e., low variance).\n"
+        "- Impute missing numeric columns with median using SimpleImputer.\n"
+        "- Impute missing categorical columns with mode using SimpleImputer.\n"
+        "- For categorical columns, use a single instance of LabelEncoder, applied within a loop.\n"
+        "- Handle outliers using IQR (set outliers to NaN, then re-impute).\n"
+        "- Scale all numeric columns using StandardScaler from sklearn.\n"
+        "- Ensure all column operations include checks for existence and avoid hardcoding column names.\n"
+        "- Update column lists if columns are dropped or transformed.\n"
+        "- Save the cleaned dataset to the provided output path.\n\n"
+
+        "Constraints:\n"
+        "- Do not hardcode column names.\n"
+        "- Do not use non-standard libraries or deprecated methods.\n"
+        "- Ensure the code is fully executable in a Python script.\n"
+        "- Ensure all transformations are applied to the main DataFrame only.\n"
+        "- Avoid hallucinations. Generate code strictly based on instructions.\n\n"
+
+        "Your Output:\n"
+        "- Return only clean and complete Python code. No markdown, comments, or explanations.\n"
+        "- Handle every possible dataset shape and structure robustly.\n"
+    )
+
+    return prompt
+
+
+
 
 
 # 🔸 Clean LLM response
