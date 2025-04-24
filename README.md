@@ -30,12 +30,10 @@ This project provides a Streamlit web application that leverages a local Large L
 
 ## 📸 Screenshots & Demo
 
-
-
 **🎬 Demo Video:**
-**(Action: Record a short video walkthrough and upload it to YouTube/Vimeo or embed a GIF)**
-[[Link to Demo Video ]([https://vimeo.com/1078426377?share=copy])]
-*(Suggestion: A short ~1-2 minute video showing the flow: upload -> summary -> preprocess -> visualize -> compare)*
+
+[Link to Demo Video](https://vimeo.com/1078426377?share=copy)
+
 
 ## ⚙️ How it Works
 
