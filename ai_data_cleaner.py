@@ -107,6 +107,44 @@ def generate_preprocessing_prompt(df, dataset_path, cleaned_path):
 
 
 
+# 🔸 Generate visualization prompt
+
+
+def generate_visualization_prompt(df, cleaned_path):
+    summary = {
+        "columns": df.columns.tolist(),
+        "dtypes": df.dtypes.astype(str).to_dict(),
+        "categorical_columns": df.select_dtypes(include=['object']).columns.tolist(),
+        "numeric_columns": df.select_dtypes(include=['float64', 'int64']).columns.tolist(),
+    }
+
+    prompt = (
+        "You are a professional Python data visualization expert.\n"
+        "Generate clean, efficient Python code that creates meaningful visualizations using seaborn and matplotlib.\n\n"
+        f"Dataset Path: {cleaned_path}\n"
+        f"Columns: {summary['columns']}\nData Types: {summary['dtypes']}\n"
+        f"Categorical Columns: {summary['categorical_columns']}\nNumeric Columns: {summary['numeric_columns']}\n\n"
+
+        "Instructions:\n"
+        "- Load the dataset from the provided path into a pandas DataFrame.\n"
+        "- For numeric columns:\n"
+        "  - Generate histograms with KDE for up to 2 numeric columns (use loop with index slicing).\n"
+        "  - Create a correlation heatmap using seaborn if there are at least 2 numeric columns.\n"
+        "- For categorical columns:\n"
+        "  - Generate bar plots for value counts (top 2 columns).\n"
+        "- Add checks to skip empty or missing columns.\n"
+        "- Save each plot to the 'temp' folder with clear filenames (e.g., 'temp/hist_colname.png', 'temp/bar_colname.png').\n"
+        "- Use seaborn style settings for consistent look and feel.\n"
+        "- Ensure figures are closed after saving to avoid overlap.\n\n"
+
+        "Constraints:\n"
+        "- Do not hardcode any column names.\n"
+        "- Do not include markdown or explanation.\n"
+        "- Output must be ONLY raw executable Python code.\n"
+        "- Keep the code modular, efficient, and resilient.\n"
+    )
+
+    return prompt
 
 
 # 🔸 Clean LLM response
