@@ -17,6 +17,7 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 
 df = pd.read_csv("C:/Users/PRABU/Downloads/mini pro/titanic.csv")
 
+
 label_encoder = LabelEncoder()
 
 for col in df.select_dtypes(include=['object']).columns:
@@ -84,6 +85,15 @@ plt.show()
 
 df.to_csv("cleaned_titanic.csv", index=False)
 print("Data preprocessing completed and saved as 'cleaned_titanic.csv'.")
+
+
+
+
+
+
+
+
+
 
 
 
