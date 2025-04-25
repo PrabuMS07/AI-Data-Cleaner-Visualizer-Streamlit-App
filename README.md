@@ -113,13 +113,5 @@ The script uses the following constants that you might want to adjust:
 *   `MODEL_NAME`: The Ollama model tag to use (default: `qwen2.5:7b`). Make sure this model is pulled via `ollama pull <model_name>`.
 *   `TEMP_DIR`: The directory where temporary files (uploaded dataset, cleaned dataset, plots, generated code) are stored (default: `temp`). This directory is created automatically.
 
-## 🤝 Contributing
 
-Contributions are welcome! If you have suggestions for improvements or find bugs, please feel free to open an issue or submit a pull request.
-
-1.  Fork the Project
-2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4.  Push to the Branch (`git push origin feature/AmazingFeature`)
-5.  Open a Pull Request
 
