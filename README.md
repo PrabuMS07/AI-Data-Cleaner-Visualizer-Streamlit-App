@@ -129,21 +129,3 @@ This project is licensed under the MIT License - see the `LICENSE` file for deta
 
 ---
 
-**To Use This README:**
-
-1.  **Save:** Save this content as `README.md` in the root directory of your GitHub repository.
-2.  **Replace Placeholders:**
-    *   Update the GitHub clone URL.
-    *   Take screenshots of your application in action and replace the `placeholder_*.png` image links with links to your actual images (upload the images to your repository).
-    *   Record a short demo video, upload it somewhere (like YouTube), and replace the placeholder video link. Alternatively, create an animated GIF and embed it.
-3.  **Add `requirements.txt`:** Make sure the `requirements.txt` file exists in your repository as described.
-4.  **Consider adding a `LICENSE` file:** Create a file named `LICENSE` and paste the text of the MIT license (or another license of your choice) into it.
-5.  **Commit and Push:** Add `README.md`, `requirements.txt`, your screenshots, and the `LICENSE` file to your git repository and push the changes.
-
-```bash
-git add README.md requirements.txt placeholder_*.png LICENSE # Add your actual image file names
-git commit -m "Feat: Add comprehensive README and project structure"
-git push
-```
-
-This should give you a professional-looking README for your GitHub project!
